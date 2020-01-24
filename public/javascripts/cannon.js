@@ -139,7 +139,7 @@ var Cannon = function (params) {
 				.style("opacity", 1);
 
 		scope.rocketId++;
-		if (scope.rocketId === 5) {
+		if (scope.rocketId === 3) {
 			scope.rocketId = 1;
 		}
 
@@ -172,13 +172,6 @@ var Cannon = function (params) {
 				.attr("transform", "translate(" + [coord.end[0] - clientRect.width/2 , coord.end[1] - clientRect.height/2] + ")" +
 					"rotate(" + [scope.dr, clientRect.width/2, clientRect.height/2] + ")")
 				.remove();
-
-
-		rocket.select("#exhaust")
-				.transition()
-				.delay(250)
-				.duration(200)
-					.style("opacity", 1);
 
 		scope.shooter.updateAccuracy({ fire: true });
 	};
