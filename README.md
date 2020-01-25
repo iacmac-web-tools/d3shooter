@@ -1,4 +1,4 @@
-d3shooter pills
+d3shooter AMR edition
 =========
 Used icons: 
 - [pills](https://www.iconfinder.com/icons/4900428/drug_medicine_pill_tablet_treatment_icon)
