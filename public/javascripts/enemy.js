@@ -16,8 +16,25 @@ var Enemy = function (params) {
 			bigR = data.scale * 25,
 			smallR = data.scale * 10;
 
+		var bacteriaClass = '';
+
+		switch (data.scale) {
+			case 1.5:
+				bacteriaClass = 'susceptible';
+			  	break;
+			case 2:
+				bacteriaClass = 'intermediate';
+			  	break;
+			case 2.5:
+				bacteriaClass = 'resistant';
+				break;	
+			default:
+				bacteriaClass = data.className;
+			  break;
+		  }
+
 		scope.enemy = scope.game.append('g')
-			.classed('enemy ' + data.className, true)
+			.classed('enemy ' + bacteriaClass, true)
 			.attr('lives', data.lives)
 			.attr('transform', 'translate(' + [cxStart, -bigR] + ')');
 		
