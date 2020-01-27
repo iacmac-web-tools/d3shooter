@@ -46,13 +46,13 @@ var ANGLES = {
 var ENEMIES = [{
 	scale: 1.5,
 	lives: 50,
-	className: 'marine'
+	className: 'susceptible'
 }, {
 	scale: 2,
 	lives: 70,
-	className: 'purple'
+	className: 'intermediate'
 }, {
 	scale: 2.5,
 	lives: 100,
-	className: 'blue'
+	className: 'resistant'
 }];

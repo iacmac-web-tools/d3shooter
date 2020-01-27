@@ -16,25 +16,9 @@ var Enemy = function (params) {
 			bigR = data.scale * 25,
 			smallR = data.scale * 10;
 
-		var bacteriaClass = '';
-
-		switch (data.scale) {
-			case 1.5:
-				bacteriaClass = 'susceptible';
-			  	break;
-			case 2:
-				bacteriaClass = 'intermediate';
-			  	break;
-			case 2.5:
-				bacteriaClass = 'resistant';
-				break;	
-			default:
-				bacteriaClass = data.className;
-			  break;
-		  }
-
 		scope.enemy = scope.game.append('g')
-			.classed('enemy ' + bacteriaClass, true)
+			.classed('enemy ' + data.className, true)
+			.attr('bacteria', data.className)
 			.attr('lives', data.lives)
 			.attr('transform', 'translate(' + [cxStart, -bigR] + ')');
 		
@@ -153,6 +137,8 @@ var Enemy = function (params) {
 									.remove();
 
 							scope.shooter.updateDestroyedCounter();
+							console.log(scope.enemy.attr('bacteria'));
+							scope.shooter.updateBacteriasScore(scope.enemy.attr('bacteria') ,1)
 						}
 					}
 				});

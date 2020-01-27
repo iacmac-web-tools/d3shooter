@@ -184,10 +184,30 @@ var Shooter = function () {
 
 	scope.initScore = function () {
 		scope.score = scope.initCounter('score');
+		scope.susceptible = scope.initCounter('susceptible');
+		scope.intermediate = scope.initCounter('intermediate');
+		scope.resistant = scope.initCounter('resistant');
 	};
 
 	scope.updateScore = function (value) {
 		scope.updateCounter(scope.score, value);
+	};
+
+	scope.updateBacteriasScore = function (bacteria, value) {
+		switch(bacteria) { 
+			case 'susceptible':
+				scope.updateCounter(scope.susceptible, value);
+				break;
+			case 'intermediate':
+				scope.updateCounter(scope.intermediate, value);
+				break;
+			case 'resistant':
+				scope.updateCounter(scope.resistant, value);
+				break;
+			default: 
+				scope.updateCounter(scope.score, value);
+				break;
+		}
 	};
 
 	scope.initTimer = function () {
