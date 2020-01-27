@@ -225,6 +225,7 @@ var Shooter = function () {
 	scope.initAccuracy = function () {
 		scope.hits = 0;
 		scope.fired = 0;
+		scope.accuracyValue = 100;
 		scope.accuracy = scope.initCounter('accuracy');
 	};
 
@@ -350,7 +351,8 @@ var Shooter = function () {
 
 			counter.attr('value', newVal);
 		} else {
-			newValStr = d3.round(scope.hits / scope.fired * 100) + '%';
+			scope.accuracyValue = d3.round(scope.hits / scope.fired * 100);
+			newValStr = scope.accuracyValue + '%';
 		}
 
 		data = newValStr.split('').map(function (value, i) {
