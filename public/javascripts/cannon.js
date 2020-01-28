@@ -1,6 +1,5 @@
 var Cannon = function (params) {
 	var scope = this;
-
 	scope.shooter = params.shooter;
 	scope.canvas = scope.shooter.canvas;
 	scope.game = scope.shooter.game;
@@ -9,7 +8,7 @@ var Cannon = function (params) {
 
 	scope.initCannon = function () {
 		scope.dx = scope.width / 2;
-		scope.dy = scope.height / 2;
+		scope.dy = scope.height - 100;
 		scope.dr = 0;
 
 		scope.rocketId = 1;
@@ -166,7 +165,6 @@ var Cannon = function (params) {
 
 		rocket
 			.transition()
-			.delay(250)
 			.duration(coord.speed)
 				.ease("quad")
 				.attr("transform", "translate(" + [coord.end[0] - clientRect.width/2 , coord.end[1] - clientRect.height/2] + ")" +
@@ -359,48 +357,6 @@ var Cannon = function (params) {
 		}
 
 		end = [oppX2, oppY2];
-
-		if (false) {
-			scope.canvas.append("circle")
-				.attr("r", 3)
-				.attr("cx", start[0])
-				.attr("cy", start[1])
-				.style("fill", "rgba(0,0,0,0.1")
-					.transition()
-					.duration(300)
-						.style("opacity", 0)
-						.remove();
-			
-			var adjacentLine = this.canvas.select(".adjacent");
-			if (!adjacentLine.node()) {
-				adjacentLine = this.canvas
-					.append("line")
-					.classed("adjacent", true);
-			}
-
-			var oppositeLine = this.canvas.select(".opposite");
-			if (!oppositeLine.node()) {
-				oppositeLine = this.canvas
-					.append("line")
-					.classed("opposite", true);
-			}
-
-			adjacentLine
-				.transition()
-				.duration(200)
-				.attr("x1", adjX1)
-				.attr("y1", adjY1)
-				.attr("x2", adjX2)
-				.attr("y2", adjY2);
-
-			oppositeLine
-				.transition()
-				.duration(200)
-				.attr("x1", oppX1)
-				.attr("y1", oppY1)
-				.attr("x2", oppX2)
-				.attr("y2", oppY2);
-		}
 
 		return {
 			start: start,

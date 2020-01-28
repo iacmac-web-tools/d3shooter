@@ -19,7 +19,7 @@ var Enemy = function (params) {
 		scope.enemy = scope.game.append('g')
 			.classed('enemy ' + data.className, true)
 			.attr('bacteria', data.className)
-			.attr('lives', data.lives + (100 - scope.shooter.accuracyValue))
+			.attr('lives', data.lives + (90 - scope.shooter.accuracyValue)) // lives increases on bad accuracy
 			.attr('transform', 'translate(' + [cxStart, -bigR] + ')');
 		
 		

@@ -44,15 +44,15 @@ var ANGLES = {
 };
 
 var ENEMIES = [{
-	scale: 1.5,
+	scale: 1,
 	lives: 50,
 	className: 'susceptible'
 }, {
-	scale: 2,
+	scale: 1.5,
 	lives: 70,
 	className: 'intermediate'
 }, {
-	scale: 2.5,
+	scale: 2,
 	lives: 100,
 	className: 'resistant'
 }];

@@ -102,7 +102,7 @@ var Shooter = function () {
 			.text('Game Over')
 			.classed('game-over', true)
 			.attr('x', scope.width / 2)
-			.attr('y', scope.height / 3)
+			.attr('y', scope.height - 200)
 			.transition()
 			.duration(3000)
 				.style('opacity', 1)
