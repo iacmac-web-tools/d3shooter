@@ -39,6 +39,31 @@ body {
 				text-transform: uppercase;
 			}
 
+			.caption-susceptible {
+				color: rgb(56, 126, 120 );
+				font-size: 12px;
+				font-weight: 200;
+				text-transform: uppercase;
+				transition: color 0.6s ease-in-out;
+				margin-top: -20px;
+			}
+			.caption-intermediate {
+				color: rgb(238, 180, 34);
+				font-size: 12px;
+				font-weight: 200;
+				text-transform: uppercase;
+				transition: color 0.6s ease-in-out;
+				margin-top: -20px;
+			}
+			.caption-resistant {
+				color: rgb(217, 83, 79);
+				font-size: 12px;
+				font-weight: 200;
+				text-transform: uppercase;
+				transition: color 0.6s ease-in-out;
+				margin-top: -20px;
+			}
+
 			text {
 				transition: fill 0.6s ease-in-out;
 				font-family: "Monaco" monospace;
@@ -64,6 +89,24 @@ body {
 			}
 		}
 
+		.resistancebar {
+			.bar-background {
+				fill: rgba(0,0,0,0.05);
+			}
+
+			.bar-resistance {
+				fill: red;
+			}
+
+			.label {
+				text-anchor: middle;
+				fill: white;
+				font-size: 12px;
+				font-family: 'monaco' monospace;
+			}
+		}
+
+
 		.bacteriabar { 
 			margin-left: 50px;
 		}
@@ -88,7 +131,7 @@ body {
 	.modal {
 		transition: color 0.6s ease-in-out;
 		position: fixed;
-		top: 160px;
+		top: 220px;
 		left: 20px;
 		color: #333;
 		font-weight: 200;
@@ -209,6 +252,13 @@ body {
 			text {
 				fill: yellow;
 			}
+
+			text.white {
+				fill: white;
+			}
+			text.green {
+				fill: #1ecd97;
+			}
 		}
 
 		.color-theme {
@@ -233,6 +283,13 @@ body {
 
 		text {
 			fill: yellow;
+		}
+
+		text.white {
+			fill: white;
+		}
+		text.green {
+			fill: #1ecd97;
 		}
 	}
 }
@@ -279,6 +336,7 @@ body {
 	fill: rgb(217, 83, 79);
 	stroke: none;
 }
+
 
 
 

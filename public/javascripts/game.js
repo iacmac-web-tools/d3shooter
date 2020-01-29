@@ -15,6 +15,7 @@ var Shooter = function () {
 		scope.initDestroyedCounter();
 		scope.initAccuracy();
 		scope.initHealthbar();
+		scope.initResistancebar();
 		
 		d3.select('button').on('click', function () {
 			scope.start();
@@ -31,11 +32,15 @@ var Shooter = function () {
 
 	scope.start = function () {
 		var healthBar,
-			healthLabel;
+			healthLabel, 
+			healthCaption,
+			resistanceLabel,
+			resistanceCaption;
 
 		scope.T = 3200;
 		scope.hits = 0;
 		scope.fired = 0;
+		scope.addEnemyHealth = 100;
 
 		scope.initScore();
 		scope.initTimer();
@@ -59,6 +64,7 @@ var Shooter = function () {
 
 		}, 1000);
 
+		// Init healt bar
 		scope.healthContaner.attr('health', 370)
 		healthBar = scope.healthContaner.select('.bar-health');
 
@@ -86,9 +92,51 @@ var Shooter = function () {
 				.classed('label', true)
 				.attr('x', 185)
 				.attr('y', 25);
+			healthCaption = scope.healthContaner.append('text')
+				.classed('label', true)
+				.attr('x', 20)
+				.attr('y', 25);
 		}
 
 		healthLabel.text('100%');
+		healthCaption.text('Health');
+
+		// Init resistance
+		scope.resistanceContaner.attr('resistance', 370)
+		resistanceBar = scope.resistanceContaner.select('.bar-resistance');
+
+		if (!resistanceBar.node()) {
+			resistanceBar = scope.resistanceContaner
+				.append('rect')
+				.classed('bar-resistance', true)
+				.attr('y', 10)
+				.attr('rx', 2)
+				.attr('ry', 2)
+				.attr('height', 20);
+		}
+
+		resistanceBar
+			.attr('width', 0)
+			.transition()
+			.duration(600)
+				.attr('width', 370)
+				.style('fill', '#1ECD97');
+
+		resistanceLabel = scope.resistanceContaner.select('.label');
+
+		if (!resistanceLabel.node()) {
+			resistanceLabel = scope.resistanceContaner.append('text')
+				.classed('label', true)
+				.attr('x', 185)
+				.attr('y', 25);
+			resistanceCaption = scope.resistanceContaner.append('text')
+				.classed('label', true)
+				.attr('x', 33)
+				.attr('y', 25);
+		}
+
+		resistanceLabel.text('0%');
+		resistanceCaption.text('Resistance');
 
 		scope.addEnemy();
 		scope.scheduleNewEnemy();
@@ -252,6 +300,19 @@ var Shooter = function () {
 			.attr('height', 20);
 	};
 
+	scope.initResistancebar = function () {
+		scope.resistanceContaner = d3.select('.resistancebar svg')
+			.attr('resistance', 370);
+
+		scope.resistanceContaner.append('rect')
+			.classed('bar-background', true)
+			.attr('y', 10)
+			.attr('rx', 2)
+			.attr('ry', 2)
+			.attr('width', 370)
+			.attr('height', 20);
+	};
+
 	scope.updateHealth = function (damage) {
 		var health,
 			percentage;
@@ -288,6 +349,36 @@ var Shooter = function () {
 				});
 
 		this.healthContaner
+			.select('.label')
+			.text(percentage + '%');
+	};
+
+	scope.updateResistance = function (value) {
+		resistance = value/100*370;
+		percentage = Math.round(value);
+
+		this.resistanceContaner.attr('resistance', resistance);
+
+		this.resistanceContaner
+			.select('.bar-resistance')
+			.transition()
+			.duration(600)
+				.attr('width', resistance)
+				.style('fill', function () {
+					var red = '#d9534f',
+						orange = '#f0ad4e',
+						green = '#1ECD97';
+
+					if (percentage > 60) {
+						return red;
+					} else if (percentage > 30) {
+						return orange;
+					} else {
+						return green;
+					}
+				});
+
+		this.resistanceContaner
 			.select('.label')
 			.text(percentage + '%');
 	};

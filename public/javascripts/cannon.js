@@ -8,7 +8,7 @@ var Cannon = function (params) {
 
 	scope.initCannon = function () {
 		scope.dx = scope.width / 2;
-		scope.dy = scope.height - 100;
+		scope.dy = scope.height - 120;
 		scope.dr = 0;
 
 		scope.rocketId = 1;
@@ -124,7 +124,7 @@ var Cannon = function (params) {
 			.style("stroke", "red")
 			.style("stroke-width", 1)
 				.transition()
-				.duration(700)
+				.duration(500)
 					.attr("r", 20)
 					.style("stroke-width", 3)
 					.style("opacity", 0)
@@ -138,7 +138,7 @@ var Cannon = function (params) {
 				.style("opacity", 1);
 
 		scope.rocketId++;
-		if (scope.rocketId === 3) {
+		if (scope.rocketId === 5) {
 			scope.rocketId = 1;
 		}
 
