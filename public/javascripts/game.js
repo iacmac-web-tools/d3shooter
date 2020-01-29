@@ -86,12 +86,15 @@ var Shooter = function () {
 				.style('fill', '#1ECD97');
 
 		healthLabel = scope.healthContaner.select('.label');
+		healthCaption = scope.healthContaner.select('.label');
 
 		if (!healthLabel.node()) {
 			healthLabel = scope.healthContaner.append('text')
 				.classed('label', true)
 				.attr('x', 185)
 				.attr('y', 25);
+		}
+		if (!healthCaption.node()) {
 			healthCaption = scope.healthContaner.append('text')
 				.classed('label', true)
 				.attr('x', 20)
@@ -123,18 +126,20 @@ var Shooter = function () {
 				.style('fill', '#1ECD97');
 
 		resistanceLabel = scope.resistanceContaner.select('.label');
+		resistanceCaption = scope.resistanceContaner.select('.label');
 
 		if (!resistanceLabel.node()) {
 			resistanceLabel = scope.resistanceContaner.append('text')
 				.classed('label', true)
 				.attr('x', 185)
 				.attr('y', 25);
+		}
+		if (!resistanceCaption.node()) {
 			resistanceCaption = scope.resistanceContaner.append('text')
 				.classed('label', true)
-				.attr('x', 33)
+				.attr('x', 35)
 				.attr('y', 25);
 		}
-
 		resistanceLabel.text('0%');
 		resistanceCaption.text('Resistance');
 
