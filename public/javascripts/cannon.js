@@ -11,9 +11,15 @@ var Cannon = function (params) {
 		scope.dy = scope.height - 120;
 		scope.dr = 0;
 
+		currentPlane = '/images/plane-china.svg';
+		var container = d3.select('.container');
+		if (container.classed('dark')) 
+		{
+			currentPlane = '/images/plane.svg'
+		}
 		scope.rocketId = 1;
 
-		d3.xml('/images/plane.svg', function (xml) {
+		d3.xml(currentPlane, function (xml) {
 			var plane,
 				bbox;
 

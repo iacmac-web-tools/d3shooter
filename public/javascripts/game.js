@@ -41,6 +41,15 @@ var Shooter = function () {
 		scope.hits = 0;
 		scope.fired = 0;
 		scope.addEnemyHealth = 100;
+		
+		var container = d3.select('.container');
+		if (container.classed('dark')) 
+		{
+			currentPlane = '/images/plane.svg';
+		}
+		
+		scope.currentTheme = 
+
 
 		scope.initScore();
 		scope.initTimer();
@@ -229,8 +238,12 @@ var Shooter = function () {
 
 			if (container.classed('dark')) {
 				container.classed('dark', false);
+				d3.select('#Page-1').remove();
+				scope.addCannon();
 			} else {
 				container.classed('dark', true);
+				d3.select('#Page-1').remove();
+				scope.addCannon();
 			}
 		});
 	};
