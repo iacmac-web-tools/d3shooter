@@ -42,15 +42,6 @@ var Shooter = function () {
 		scope.fired = 0;
 		scope.addEnemyHealth = 100;
 		
-		var container = d3.select('.container');
-		if (container.classed('dark')) 
-		{
-			currentPlane = '/images/plane.svg';
-		}
-		
-		scope.currentTheme = 
-
-
 		scope.initScore();
 		scope.initTimer();
 		scope.initDestroyedCounter();
@@ -95,7 +86,7 @@ var Shooter = function () {
 				.style('fill', '#1ECD97');
 
 		healthLabel = scope.healthContaner.select('.label');
-		healthCaption = scope.healthContaner.select('.label');
+		healthCaption = scope.healthContaner.select('.caption');
 
 		if (!healthLabel.node()) {
 			healthLabel = scope.healthContaner.append('text')
@@ -105,7 +96,7 @@ var Shooter = function () {
 		}
 		if (!healthCaption.node()) {
 			healthCaption = scope.healthContaner.append('text')
-				.classed('label', true)
+				.classed('caption', true)
 				.attr('x', 20)
 				.attr('y', 25);
 		}
@@ -135,7 +126,7 @@ var Shooter = function () {
 				.style('fill', '#1ECD97');
 
 		resistanceLabel = scope.resistanceContaner.select('.label');
-		resistanceCaption = scope.resistanceContaner.select('.label');
+		resistanceCaption = scope.resistanceContaner.select('.caption');
 
 		if (!resistanceLabel.node()) {
 			resistanceLabel = scope.resistanceContaner.append('text')
@@ -145,7 +136,7 @@ var Shooter = function () {
 		}
 		if (!resistanceCaption.node()) {
 			resistanceCaption = scope.resistanceContaner.append('text')
-				.classed('label', true)
+				.classed('caption', true)
 				.attr('x', 35)
 				.attr('y', 25);
 		}
