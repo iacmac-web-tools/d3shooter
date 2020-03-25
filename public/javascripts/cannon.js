@@ -11,7 +11,7 @@ var Cannon = function (params) {
 		scope.dy = scope.height - 120;
 		scope.dr = 0;
 
-		currentPlane = '/images/plane-china.svg';
+		currentPlane = '/images/plane-russia.svg';
 		var container = d3.select('.container');
 		if (container.classed('dark')) 
 		{
