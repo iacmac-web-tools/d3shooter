@@ -231,10 +231,14 @@ var Shooter = function () {
 				container.classed('dark', false);
 				d3.select('#Page-1').remove();
 				scope.addCannon();
+				scope.initHealthbar();
+				scope.initResistancebar('');
 			} else {
 				container.classed('dark', true);
 				d3.select('#Page-1').remove();
 				scope.addCannon();
+				scope.initHealthbar();
+				scope.initResistancebar('dark');
 			}
 		});
 	};
@@ -309,7 +313,7 @@ var Shooter = function () {
 			.attr('height', 20);
 	};
 
-	scope.initResistancebar = function () {
+	scope.initResistancebar = function (mode) {
 		scope.resistanceContaner = d3.select('.resistancebar svg')
 			.attr('resistance', 370);
 
@@ -320,6 +324,20 @@ var Shooter = function () {
 			.attr('ry', 2)
 			.attr('width', 370)
 			.attr('height', 20);
+		if (mode === 'dark') { 
+			d3.select('.resistancebar svg').attr('display', 'block');
+			d3.select('.bottombar').style('bottom', '10px');
+			d3.select('.bottombar').style('top', null);
+			d3.select('.lebedev-disclaimer').style('display', 'none');
+			d3.select('.bacteriabar').style('display', 'block');
+		} else { 
+			d3.select('.resistancebar svg').attr('display', 'none');
+			d3.select('.bottombar').style('bottom', null);
+			d3.select('.bottombar').style('top', '100px');
+			d3.select('.lebedev-disclaimer').style('display', 'block');
+			d3.select('.bacteriabar').style('display', 'none');
+		}
+		
 	};
 
 	scope.updateHealth = function (damage) {

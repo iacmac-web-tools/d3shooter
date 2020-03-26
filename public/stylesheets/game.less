@@ -120,13 +120,13 @@ body {
 			}
 		}
 
-
 		.bacteriabar { 
 			margin-left: 50px;
 		}
 	}
 
 	.bottombar { 
+
 		position: fixed;
 		bottom: 10px;
 		left: 20px;
@@ -271,6 +271,36 @@ body {
 	}
 
 	&.dark {
+
+		.bacteriabar { 
+			margin-left: 50px;
+		}
+
+		.resistancebar {
+			.bar-background {
+				fill: rgba(0,0,0,0.05);
+			}
+
+			.bar-resistance {
+				fill: red;
+			}
+
+			.label {
+				text-anchor: middle;
+				fill: white;
+				font-size: 12px;
+				font-family: 'monaco' monospace;
+			}
+
+			.caption { 
+				text-anchor: middle;
+				fill: white;
+				font-size: 12px;
+				font-family: 'monaco' monospace;
+			}
+		}
+
+
 		.element {
 			text {
 				fill: yellow;
@@ -285,7 +315,7 @@ body {
 		}
 
 		.color-theme {
-			background: red;
+			background: #1ECD97;
 		}
 
 		.modal, .bottombar {
