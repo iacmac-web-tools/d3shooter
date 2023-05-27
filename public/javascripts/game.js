@@ -1,5 +1,9 @@
 var Shooter = function () {
 	var scope = this;
+
+	var gameEasy = 3200;
+	var gameNormal = 2400;
+	var gameHard = 1200;
 	
 	d3.xml('/images/explosion.svg', function (xml) {
 		scope.explosion = xml.documentElement;
@@ -16,7 +20,7 @@ var Shooter = function () {
 		scope.initAccuracy();
 		scope.initHealthbar();
 		scope.initResistancebar();
-		
+	
 		d3.select('button').on('click', function () {
 			scope.start();
 
@@ -37,7 +41,21 @@ var Shooter = function () {
 			resistanceLabel,
 			resistanceCaption;
 
-		scope.T = 3200;
+		switch(d3.select('input[name="radio"]:checked').node().value) {
+  		case '1':
+			scope.T = gameEasy;
+			break;
+  		case '2':
+			scope.T = gameNormal;
+			break;
+		case '3':
+			scope.T = gameHard;
+			break;
+  		default:
+			scope.T = gameEasy;
+			break;
+		}
+		console.log(scope.T);
 		scope.hits = 0;
 		scope.fired = 0;
 		scope.addEnemyHealth = 100;
@@ -324,19 +342,26 @@ var Shooter = function () {
 			.attr('ry', 2)
 			.attr('width', 370)
 			.attr('height', 20);
-		if (mode === 'dark') { 
+
 			d3.select('.resistancebar svg').attr('display', 'block');
-			d3.select('.bottombar').style('bottom', '10px');
-			d3.select('.bottombar').style('top', null);
+			d3.select('.bottombar').style('bottom', null);
+		 	d3.select('.bottombar').style('top', '175px');
 			d3.select('.lebedev-disclaimer').style('display', 'none');
 			d3.select('.bacteriabar').style('display', 'block');
-		} else { 
-			d3.select('.resistancebar svg').attr('display', 'none');
-			d3.select('.bottombar').style('bottom', null);
-			d3.select('.bottombar').style('top', '100px');
-			d3.select('.lebedev-disclaimer').style('display', 'block');
-			d3.select('.bacteriabar').style('display', 'none');
-		}
+
+		// if (mode === 'dark') { 
+		// 	d3.select('.resistancebar svg').attr('display', 'block');
+		// 	d3.select('.bottombar').style('bottom', '10px');
+		// 	d3.select('.bottombar').style('top', null);
+		// 	d3.select('.lebedev-disclaimer').style('display', 'none');
+		// 	d3.select('.bacteriabar').style('display', 'block');
+		// } else { 
+		// 	d3.select('.resistancebar svg').attr('display', 'none');
+		// 	d3.select('.bottombar').style('bottom', null);
+		// 	d3.select('.bottombar').style('top', '100px');
+		// 	d3.select('.lebedev-disclaimer').style('display', 'block');
+		// 	d3.select('.bacteriabar').style('display', 'none');
+		// }
 		
 	};
 
