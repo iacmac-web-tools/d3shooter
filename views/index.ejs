@@ -19,7 +19,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
@@ -108,7 +108,7 @@
                     <label for="radio-3">Hard</label>
                 </div>
             </div>
-            <button>Start</button>
+            <button id="start-game">Start</button>
             <table>
                 <tr>
                     <td>
@@ -164,6 +164,19 @@
                 </tr>
 
             </table>
+
+            <div class="highscore-container">
+                <p>High Scores (top 10)</p>
+                <div class="highscore-table">
+                </div>
+                <button id="reset-highscore">Reset Top</button>
+            </div>
+        </div>
+
+        <div class="highscore-modal">
+                <label for="name">Enter your name</label>
+                <input type="text" name="name" id="name">
+                <button id="submit-highscore">Submit</button>
         </div>
 
     </div>

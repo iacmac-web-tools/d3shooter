@@ -4,6 +4,7 @@ var Shooter = function () {
 	var gameEasy = 3200;
 	var gameNormal = 2400;
 	var gameHard = 1200;
+	var playerScore = 0;
 	
 	d3.xml('/images/explosion.svg', function (xml) {
 		scope.explosion = xml.documentElement;
@@ -20,8 +21,9 @@ var Shooter = function () {
 		scope.initAccuracy();
 		scope.initHealthbar();
 		scope.initResistancebar();
+		scope.showTop();
 	
-		d3.select('button').on('click', function () {
+		d3.select('#start-game').on('click', function () {
 			scope.start();
 
 			d3.select('.game-over').remove();
@@ -29,10 +31,58 @@ var Shooter = function () {
 			d3.select('.modal')
 				.transition()
 				.duration(600)
-					.style('height', '0px')
+					.style('display', 'none')
 					.style('opacity', 0.1);
 		});
+
+		d3.select('.highscore-modal')
+				.transition()
+				.duration(600)
+					.style('opacity', 1);
+
+	
+		d3.select('#submit-highscore').on('click', function () {
+			const player = d3.select('input[name="name"]').node().value;
+			const highscore = localStorage.getItem("highscore");
+			let highscoredata = [];
+			if (highscore) { 
+			 	highscoredata = JSON.parse(highscore);
+			}
+			highscoredata.push({name: player, score: +playerScore});
+			localStorage.setItem("highscore", JSON.stringify(highscoredata));
+			d3.select('input[name="name"]').node().value = '';
+			d3.select('.highscore-modal').style('display', 'none');
+			d3.select('.highscore-container').style('display', 'block');
+
+			scope.showTop();
+		});
+		d3.select('#reset-highscore').on('click', function () {
+			scope.resetTop();
+			scope.showTop();
+		});
 	});
+
+	scope.resetTop = function() { 
+		localStorage.setItem("highscore", []);
+	}
+	scope.showTop = function() { 
+		const highscore = localStorage.getItem("highscore");
+		let highscoredata = [];
+		if (highscore) { 
+			highscoredata = JSON.parse(highscore);
+		}
+		const data = highscoredata.sort((a, b) => b.score - a.score).slice(0, 10);
+		let htmlTable = '<table><tr><th>#</th><th>Name</th><th>Score</th></tr>';
+		data.forEach((element, index) => {
+			htmlTable += "<tr>" + 
+			"<td>" + ++index + "</td>" + 
+			"<td>" + element.name + "</td>" + 
+			"<td>" + element.score + "</td>" + 
+			"</tr>";
+		});
+		htmlTable+="</table>"
+		d3.select('.highscore-table').html(htmlTable);
+	}
 
 	scope.start = function () {
 		var healthBar,
@@ -55,7 +105,6 @@ var Shooter = function () {
 			scope.T = gameEasy;
 			break;
 		}
-		console.log(scope.T);
 		scope.hits = 0;
 		scope.fired = 0;
 		scope.addEnemyHealth = 100;
@@ -194,8 +243,10 @@ var Shooter = function () {
 		d3.select('.modal')
 			.transition()
 			.duration(600)
-				.style('height', '320px')
+				.style('display', 'block')
 				.style('opacity', 1);
+		d3.select('.highscore-container').style('display', 'none');
+		d3.select('.highscore-modal').style('display', 'block');
 	};
 
 	scope.initCanvas = function () {
@@ -262,6 +313,7 @@ var Shooter = function () {
 	};
 
 	scope.initScore = function () {
+		playerScore = 0;
 		scope.score = scope.initCounter('score');
 		scope.susceptible = scope.initCounter('susceptible');
 		scope.intermediate = scope.initCounter('intermediate');
@@ -269,7 +321,7 @@ var Shooter = function () {
 	};
 
 	scope.updateScore = function (value) {
-		scope.updateCounter(scope.score, value);
+		playerScore = scope.updateCounter(scope.score, value);
 	};
 
 	scope.updateBacteriasScore = function (bacteria, value) {
@@ -538,6 +590,8 @@ var Shooter = function () {
 				.attr('y', 50)
 				.style('fill-opacity', 1e-6)
 				.remove();
+
+		return newValStr;
 	};
 
 	scope.addCannon = function () {
