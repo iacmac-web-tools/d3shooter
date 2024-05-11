@@ -1,0 +1,194 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <title>AMRgame</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel='stylesheet' href='stylesheets/style.css' />
+    <link rel='stylesheet' href='stylesheets/main.css' />
+    <link rel='stylesheet' href='stylesheets/game.css' />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="images/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="images/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <!--[if lt IE 10]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <div class="container dark">
+        <div class="toolbar">
+            <div class="color-theme">
+            </div>
+
+            <div id="score" class="element">
+                <svg width="80" height="50"></svg>
+                <div class="caption">score</div>
+            </div>
+
+            <div id="timer" class="element">
+                <svg width="80" height="50"></svg>
+                <div class="caption">time</div>
+            </div>
+
+            <div id="destroyed" class="element">
+                <svg width="80" height="50"></svg>
+                <div class="caption">destroyed</div>
+            </div>
+
+            <div id="accuracy" class="element">
+                <svg width="80" height="50"></svg>
+                <div class="caption">accuracy</div>
+            </div>
+
+            <div class="bacteriabar">
+                <div id="susceptible" class="element">
+                    <svg width="120" height="50"></svg>
+                    <div class="caption-susceptible">susceptible</div>
+                </div>
+
+                <div id="intermediate" class="element">
+                    <svg width="125" height="50"></svg>
+                    <div class="caption-intermediate">intermediate</div>
+                </div>
+
+                <div id="resistant" class="element">
+                    <svg width="80" height="50"></svg>
+                    <div class="caption-resistant">resistant</div>
+                </div>
+            </div>
+            <div class="healthbar">
+                <svg width="400" height="30"></svg>
+            </div>
+            <div class="resistancebar">
+                <svg width="400" height="30"></svg>
+            </div>
+        </div>
+
+        <div class="modal">
+            <div class="bottombar">
+                <p>
+                    Need more AMR products? Check
+                    <a target="_blank" href="https://amrhub.ru/">AMRhub</a>.
+                </p>
+                <p class="lebedev-disclaimer">
+                    Moscow pattern designed by Artemy Lebedev
+                    <a target="_blank" href="https://www.artlebedev.com/mosgortrans/pattern/">here</a>
+                </p>
+            </div>
+            <div class="form_radio_group">
+                <div class="form_radio_group-item">
+                    <input id="radio-1" type="radio" name="radio" value="1" checked>
+                    <label for="radio-1">Easy</label>
+                </div>
+                <div class="form_radio_group-item">
+                    <input id="radio-2" type="radio" name="radio" value="2">
+                    <label for="radio-2">Normal</label>
+                </div>
+                <div class="form_radio_group-item">
+                    <input id="radio-3" type="radio" name="radio" value="3">
+                    <label for="radio-3">Hard</label>
+                </div>
+            </div>
+            <button id="start-game">Start</button>
+            <table>
+                <tr>
+                    <td>
+                        <span class="hotkey">mouse</span>
+                    </td>
+                    <td>
+                        rotate
+                    </td>
+                    <td>
+                        <span class="hotkey">a</span>
+                    </td>
+                    <td>
+                        left
+                    </td>
+                    <td>
+                        <span class="hotkey">w</span>
+                    </td>
+                    <td>
+                        up
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="hotkey">LM click</span>
+                    </td>
+                    <td>
+                        fire
+                    </td>
+                    <td>
+                        <span class="hotkey">d</span>
+                    </td>
+                    <td>
+                        right
+                    </td>
+                    <td>
+                        <span class="hotkey">s</span>
+                    </td>
+                    <td>
+                        down
+                    </td>
+                </tr>
+                <tr>
+
+                </tr>
+                <tr>
+
+                </tr>
+                <tr>
+
+                </tr>
+                <tr>
+
+                </tr>
+
+            </table>
+
+            <div class="highscore-container">
+                <p>High Scores (top 10)</p>
+                <div class="highscore-table">
+                </div>
+                <button id="reset-highscore">Reset Top</button>
+            </div>
+        </div>
+
+        <div class="highscore-modal">
+                <label for="name">Enter your name</label>
+                <input type="text" name="name" id="name">
+                <button id="submit-highscore">Submit</button>
+        </div>
+
+    </div>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" src="javascripts/d3.js"></script>
+    <script type="text/javascript" src="javascripts/constants.js"></script>
+    <script type="text/javascript" src="javascripts/cannon.js"></script>
+    <script type="text/javascript" src="javascripts/enemy.js"></script>
+    <script type="text/javascript" src="javascripts/game.js"></script>
+    <script type="text/javascript">
+        var game = new Shooter();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,468 @@
+html,
+body {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.container {
+	overflow: hidden;
+	border-radius: 2px;
+
+	.toolbar {
+		position: fixed;
+		top: 20px;
+		left: 20px;
+
+		.color-theme {
+			transition: background 0.6s ease-in-out;
+			cursor: pointer;
+			float: left;
+			margin-right: 15px;
+			margin-top: 10px;
+			width: 35px;
+			height: 35px;
+			border-radius: 2px;
+			background: #666;
+		}
+
+		.element {
+			float: left;
+			margin-right: 5px;
+
+			.caption {
+				transition: color 0.6s ease-in-out;
+				margin-top: -20px;
+				color: #999;
+				font-size: 12px;
+				font-weight: 200;
+				text-transform: uppercase;
+			}
+
+			.caption-susceptible {
+				color: rgb(56, 126, 120 );
+				font-size: 12px;
+				font-weight: 200;
+				text-transform: uppercase;
+				transition: color 0.6s ease-in-out;
+				margin-top: -20px;
+			}
+			.caption-intermediate {
+				color: rgb(238, 180, 34);
+				font-size: 12px;
+				font-weight: 200;
+				text-transform: uppercase;
+				transition: color 0.6s ease-in-out;
+				margin-top: -20px;
+			}
+			.caption-resistant {
+				color: rgb(217, 83, 79);
+				font-size: 12px;
+				font-weight: 200;
+				text-transform: uppercase;
+				transition: color 0.6s ease-in-out;
+				margin-top: -20px;
+			}
+
+			text {
+				transition: fill 0.6s ease-in-out;
+				font-family: "Monaco" monospace;
+				fill: #1ECD97;
+				font-size: 20px;
+			}
+		}
+
+		.healthbar {
+			.bar-background {
+				fill: rgba(0,0,0,0.05);
+			}
+
+			.bar-health {
+				fill: #1ECD97;
+			}
+
+			.label {
+				text-anchor: middle;
+				fill: white;
+				font-size: 12px;
+				font-family: 'monaco' monospace;
+			}
+
+			.caption { 
+				text-anchor: middle;
+				fill: white;
+				font-size: 12px;
+				font-family: 'monaco' monospace;
+			}
+		}
+
+		.resistancebar {
+			.bar-background {
+				fill: rgba(0,0,0,0.05);
+			}
+
+			.bar-resistance {
+				fill: red;
+			}
+
+			.label {
+				text-anchor: middle;
+				fill: white;
+				font-size: 12px;
+				font-family: 'monaco' monospace;
+			}
+
+			.caption { 
+				text-anchor: middle;
+				fill: white;
+				font-size: 12px;
+				font-family: 'monaco' monospace;
+			}
+		}
+
+		.bacteriabar { 
+			margin-left: 50px;
+		}
+	}
+
+	.bottombar { 
+
+		position: fixed;
+		bottom: 10px;
+		left: 20px;
+		// color: #333;
+		color: whitesmoke;
+		height: 64px;
+
+		a {
+			text-decoration: none;
+			color: dodgerblue;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.highscore-modal { 
+		transition: color 0.6s ease-in-out;
+		position: fixed;
+		top: 420px;
+		left: 20px;
+		// color: #333;
+		color: whitesmoke;
+		font-weight: 200;
+		width: 370px;
+		height: 320px;
+		overflow: hidden;
+		display: none;
+
+		input { 
+			width: 100%;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			height: 32px;
+			font-size: 18;
+		}
+		button {
+			transition: all 0.1s ease-in-out;
+			cursor: pointer;
+			display: block;
+			width: 100%;
+			padding: 10px;
+			border: none;
+			color: #fff;
+			background-color: rgba(30, 205, 151, 0.8);
+			border-radius: 4px;
+			font-size: 20px;
+
+			&:active,
+			&:focus {
+				outline: none;
+			}
+
+			&:hover {
+				background-color: rgba(30, 205, 151, 1);
+			}
+
+			&:active {
+				box-shadow: inset 0 2px 1px rgba(0,0,0,0.1);
+			}
+		}
+	}
+
+	.modal {
+		transition: color 0.6s ease-in-out;
+		position: fixed;
+		top: 220px;
+		left: 20px;
+		// color: #333;
+		color: whitesmoke;
+		font-weight: 200;
+		width: 370px;
+		height: auto;
+		overflow: hidden;
+
+		button {
+			transition: all 0.1s ease-in-out;
+			cursor: pointer;
+			display: block;
+			width: 100%;
+			padding: 10px;
+			border: none;
+			color: #fff;
+			background-color: rgba(30, 205, 151, 0.8);
+			border-radius: 4px;
+			font-size: 20px;
+
+			&:active,
+			&:focus {
+				outline: none;
+			}
+
+			&:hover {
+				background-color: rgba(30, 205, 151, 1);
+			}
+
+			&:active {
+				box-shadow: inset 0 2px 1px rgba(0,0,0,0.1);
+			}
+		}
+
+		a {
+			text-decoration: none;
+			color: dodgerblue;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		table {
+			border: none;
+
+			td {
+				padding: 5px;
+			}
+
+			tr>td:first-child {
+				text-align: right;
+			}
+
+			tr>td:last-child {
+			}
+		}
+
+		.hotkey {
+			transition: color 0.6s ease-in-out;
+			background: rgba(0,0,0,0.1);
+			border-radius: 2px;
+			border: 1px solid rgba(0,0,0,.2);
+			padding: 2px 5px;
+			font-family: "monaco" monospace;
+			font-size: 12px;
+		}
+	}
+
+	.main {
+		transition: background 0.6s ease-in-out;
+		cursor: crosshair;
+		background: #333;
+		background-image: url(../images/mgt-pattern-on.png);
+		background-repeat: repeat-x; 
+		background-position: bottom;
+		background-size: 100%;     
+    	background-repeat:   no-repeat;
+	
+
+		.bg-circle {
+			transition: fill 0.6s ease-in-out;
+			fill: #999;
+			stroke: none;
+		}
+
+		text {
+			font-family: "Monaco" monospace;
+			stroke: none;
+			// fill: #1ECD97;
+			fill: #E74C3C;
+		}
+
+		.game-over {
+			text-anchor: middle;
+			font-size: 30px;
+			fill: #999;
+			opacity: 0.1;
+		}
+
+		.blue {
+			.lg {
+				fill: cornflowerblue;
+			}
+		}
+
+		.purple {
+			.lg {
+				fill: mediumslateblue;
+			}
+		}
+
+		.marine {
+			.lg {
+				fill: mediumaquamarine;
+			}
+		}
+
+		.sm {
+			fill: rgba(0,0,0,0.1);
+		}
+	}
+
+	&.dark {
+
+		.bacteriabar { 
+			margin-left: 50px;
+		}
+
+		.resistancebar {
+			.bar-background {
+				fill: rgba(0,0,0,0.05);
+			}
+
+			.bar-resistance {
+				fill: red;
+			}
+
+			.label {
+				text-anchor: middle;
+				fill: white;
+				font-size: 12px;
+				font-family: 'monaco' monospace;
+			}
+
+			.caption { 
+				text-anchor: middle;
+				fill: white;
+				font-size: 12px;
+				font-family: 'monaco' monospace;
+			}
+		}
+
+
+		.element {
+			text {
+				fill: yellow;
+			}
+
+			text.white {
+				fill: white;
+			}
+			text.green {
+				fill: #1ecd97;
+			}
+		}
+
+		.color-theme {
+			background: #1ECD97;
+		}
+
+		// .modal, .bottombar {
+		// 	color: whitesmoke;
+
+		// 	.hotkey {
+		// 		color: whitesmoke;
+		// 	}
+		// }
+
+		.main {
+			background: #333;
+
+			.bg-circle {
+				fill: whitesmoke;
+			}
+		}
+
+		text {
+			fill: yellow;
+		}
+
+		.susceptible {
+			fill: rgb(56, 126, 120);
+			stroke: none;
+		}
+		.intermediate {
+			fill: rgb(238, 180, 34);
+			stroke: none;
+		}
+		.resistant {
+			fill: rgb(217, 83, 79);
+			stroke: none;
+		}
+	}
+
+	text.white {
+		fill: white;
+	}
+	text.green {
+		fill: #1ecd97;
+	}
+}
+
+.cannon .body {
+	opacity: 0;
+	stroke-width: 1;
+	stroke: lightsteelblue;
+	fill: #1ECD97;
+	
+}
+
+.red {
+	stroke-width: 4;
+	stroke: red;
+	fill: none;
+}
+
+.orange {
+	fill: orange;
+	stroke: none;
+}
+
+.warhead {
+	opacity: 1;
+	fill: coral;
+}
+
+.cannon line {
+	opacity: 0;
+	stroke: #1ECD97;
+	stroke-width: 8;
+}
+
+.susceptible {
+	fill: #C0C0C0;
+	stroke: none;
+}
+.intermediate {
+	fill: #A9A9A9;
+	stroke: none;
+}
+.resistant {
+	fill: #808080;
+	stroke: none;
+}
+
+
+
+
+/* .enemy {
+	stroke: lightgray;
+	stroke-width: 6;
+	stroke-opacity: 0.3;
+	fill: gray;
+} */
+
+
+.footer {
+	padding: 10px;
+	font-size: 12px;
+}
